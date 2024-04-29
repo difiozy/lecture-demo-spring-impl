@@ -1,0 +1,84 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Dmitrii Schurov
+      changes:
+        - createTable:
+            tableName: lecture
+            columns:
+              - column:
+                  name: lecture_id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: lecture_display_name
+                  type: varchar
+                  constraints:
+                    nullable: false
+
+        - createTable:
+            tableName: lecturer
+            columns:
+              - column:
+                  name: lecturer_id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: full_name
+                  type: varchar
+                  constraints:
+                    nullable: false
+
+        - createTable:
+            tableName: schedule
+            columns:
+              - column:
+                  name: schedule_id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: schedule_name
+                  type: varchar
+
+
+        - createTable:
+            tableName: record
+            columns:
+              - column:
+                  name: record_id
+                  type: int
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: schedule_id
+                  type: int
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_schedule_id
+                    references: schedule(schedule_id)
+              - column:
+                  name: lecture_id
+                  type: int
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_lecture_id
+                    references: lecture(lecture_id)
+              - column:
+                  name: lecturer_id
+                  type: int
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_lecturer_id
+                    references: lecturer(lecturer_id)
+
+
