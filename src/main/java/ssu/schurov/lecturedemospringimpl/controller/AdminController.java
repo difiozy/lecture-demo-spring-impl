@@ -1,8 +1,6 @@
 package ssu.schurov.lecturedemospringimpl.controller;
 
-import jakarta.annotation.security.PermitAll;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,8 +20,7 @@ public class AdminController {
     private final PersonRepository personRepository;
     private final RecordRepository recordRepository;
 
-    @Secured("ROLE_ADMIN")
-    @GetMapping("/deleteAll")
+    @GetMapping("/admin/deleteAll")
     Boolean deleteAllInfo() {
         recordRepository.deleteAll();
         lectureRepository.deleteAll();
@@ -31,21 +28,23 @@ public class AdminController {
         return true;
     }
 
-    @PermitAll
     @PostMapping("/lecture")
     void createLecture(@RequestBody Lecture lecture) {
         lectureRepository.save(lecture);
     }
 
-    @PermitAll
     @PostMapping("/lecturer")
     void createLecturer(@RequestBody Person person) {
         personRepository.save(person);
     }
 
-    @Secured("ROLE_USER")
     @PostMapping("/record")
     void createRecord(@RequestBody RecordEntity record) {
         recordRepository.save(record);
+    }
+
+    @GetMapping("/info")
+    String info() {
+        return "INFO";
     }
 }
