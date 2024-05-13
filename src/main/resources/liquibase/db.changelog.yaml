@@ -18,7 +18,6 @@ databaseChangeLog:
                   type: varchar
                   constraints:
                     nullable: false
-
         - createTable:
             tableName: lecturer
             columns:
@@ -34,7 +33,6 @@ databaseChangeLog:
                   type: varchar
                   constraints:
                     nullable: false
-
         - createTable:
             tableName: schedule
             columns:
@@ -48,8 +46,6 @@ databaseChangeLog:
               - column:
                   name: schedule_name
                   type: varchar
-
-
         - createTable:
             tableName: record
             columns:
@@ -81,5 +77,15 @@ databaseChangeLog:
                     nullable: false
                     foreignKeyName: fk_lecturer_id
                     references: lecturer(lecturer_id)
+  - changeSet:
+      id: 2
+      author: Dmitrii Schurov
+      changes:
+        - dropColumn:
+            tableName: record
+            columnName: schedule_id
+        - dropTable:
+            tableName: schedule
+
 
 

@@ -1,7 +1,7 @@
 package ssu.schurov.lecturedemospringimpl.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import ssu.schurov.lecturedemospringimpl.entity.Lecturer;
+import ssu.schurov.lecturedemospringimpl.entity.Person;
 
-public interface LecturerRepository extends JpaRepository<Lecturer, Integer> {
+public interface LecturerRepository extends JpaRepository<Person, Integer> {
 }

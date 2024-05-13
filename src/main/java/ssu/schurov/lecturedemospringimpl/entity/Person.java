@@ -11,7 +11,7 @@ import java.util.Set;
 @Setter
 @Entity
 @Table(name = "lecturer")
-public class Lecturer {
+public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "lecturer_id_gen")
     @SequenceGenerator(name = "lecturer_id_gen", sequenceName = "lecturer_lecturer_id_seq", allocationSize = 1)
@@ -21,7 +21,7 @@ public class Lecturer {
     @Column(name = "full_name", nullable = false, length = Integer.MAX_VALUE)
     private String fullName;
 
-    @OneToMany(mappedBy = "lecturer")
+    @OneToMany(mappedBy = "person")
     private Set<RecordEntity> recordEntities = new LinkedHashSet<>();
 
 }
