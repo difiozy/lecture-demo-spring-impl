@@ -11,7 +11,7 @@ import ssu.schurov.lecturedemospringimpl.entity.Lecture;
 import ssu.schurov.lecturedemospringimpl.entity.Person;
 import ssu.schurov.lecturedemospringimpl.entity.RecordEntity;
 import ssu.schurov.lecturedemospringimpl.repository.LectureRepository;
-import ssu.schurov.lecturedemospringimpl.repository.LecturerRepository;
+import ssu.schurov.lecturedemospringimpl.repository.PersonRepository;
 import ssu.schurov.lecturedemospringimpl.repository.RecordRepository;
 
 @RestController
@@ -19,7 +19,7 @@ import ssu.schurov.lecturedemospringimpl.repository.RecordRepository;
 public class AdminController {
 
     private final LectureRepository lectureRepository;
-    private final LecturerRepository lecturerRepository;
+    private final PersonRepository personRepository;
     private final RecordRepository recordRepository;
 
     @Secured("ROLE_ADMIN")
@@ -27,7 +27,7 @@ public class AdminController {
     Boolean deleteAllInfo() {
         recordRepository.deleteAll();
         lectureRepository.deleteAll();
-        lecturerRepository.deleteAll();
+        personRepository.deleteAll();
         return true;
     }
 
@@ -40,7 +40,7 @@ public class AdminController {
     @PermitAll
     @PostMapping("/lecturer")
     void createLecturer(@RequestBody Person person) {
-        lecturerRepository.save(person);
+        personRepository.save(person);
     }
 
     @Secured("ROLE_USER")
